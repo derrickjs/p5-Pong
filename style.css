@@ -1,0 +1,100 @@
+*{
+	box-sizing: border-box;
+	font-family: sans-serif;
+    margin:0;
+    padding:0
+}
+
+body{
+    
+    margin:0;
+	padding:0;
+	background-color: black;
+	margin-bottom: 5%;
+	min-height: 400px;
+    
+
+
+}
+
+/* header section starts */
+li, a , button {
+	font-family: sans-serif;
+	font-weight: 500;
+	font-size: 1.3rem;
+	color: white;
+	text-decoration: none;
+	list-style-type: none;
+	
+
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: solid 2px lightgray;
+    background-color:  black;
+    
+}
+
+h1{
+    font-size: 4rem;
+    color: white;
+    text-align: center;
+}
+
+h2{
+    font-size: 3.5rem;
+    color: white;
+    text-align: center;
+    padding-bottom: 10%;
+}
+
+p{
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+    padding:5%;
+}
+
+
+.nav-link{
+	list-style: none;
+	
+}
+
+.nav-link li {
+	display: inline-block;
+	margin: 1em;
+}
+
+.nav-link li a {
+	transition: all 0.8s ease 0s;
+	padding: 1em;
+    
+}
+
+.nav-link li a:hover {
+	color: black;
+	background-color: white;
+	border-radius: 50%;
+
+}
+
+.nav-link li a:focus{
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+	 
