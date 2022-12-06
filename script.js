@@ -1,4 +1,4 @@
-var xBall = Math.floor(Math.random() * 800) + 50 ;  // needs attention
+var xBall = Math.floor(Math.random() * window.innerWidth);  // needs attention
 var yBall = 50;
 var diameter = 50;
 var xBallChange = 4;
@@ -14,20 +14,21 @@ var highScore = 0;
 
 
 function setup() {   // standard p5 setup function
-  createCanvas(windowWidth , windowHeight);
+  var canvas = createCanvas(windowWidth , windowHeight); // using a variable to place the canvas in any element on the html page
+  canvas.parent("game");    // puts it in element with id = "game" 
 }
 
 
 
-function draw() {
+function draw() {   // draw uses a framerate for loop time interval
   background(0)
 
   fill(0, 100, 255);
   noStroke();
   ellipse(xBall, yBall , diameter, diameter)   // makes ball
 
-  xBall += xBallChange;
-  yBall += yBallChange;
+  xBall += xBallChange; // sets ball x axis speed
+  yBall += yBallChange; // sets ball speed y axis
 
 
   if (xBall < diameter/2 ||   //bounces ball of sides
@@ -82,6 +83,9 @@ function draw() {
   fill(0, 255, 255);  // sets placement of score text and location on canvas
   textSize(24);
   text("Score: " + score, 30, 60);
+
+  stroke(255);
+  line(0, windowHeight-100, windowWidth, windowHeight-100 ) // when drawing lines subtracting from windowHeight will pull this from the bottom while adding will pull from the top
 }
 
 
@@ -103,8 +107,5 @@ function keyPressed() {  // gives left and right arrows paddle movement.
 function mouseMoved(){  // gives paddle movement to mouse when mouse is moved.
   xPaddle = mouseX;
 }
-
-
-  
   
 window.addEventListener("resize", windowResized);   // fits canvas to full window size
