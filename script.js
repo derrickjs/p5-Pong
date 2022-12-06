@@ -1,124 +1,110 @@
-var xBall = Math.floor(Math.random() * 800) + 50 ;
+var xBall = Math.floor(Math.random() * 800) + 50 ;  // needs attention
 var yBall = 50;
 var diameter = 50;
 var xBallChange = 4;
 var yBallChange = 4;
-
-
-
-
-
 var xPaddle;
 var yPaddle;
 var paddleWidth = 100;
 var paddleHeight = 25;
-
-
-var started = false;
+var started = false;     // needs attention
 var score = 0;
 var highScore = 0;
 
 
 
-function setup() {
-   createCanvas(windowWidth , windowHeight  );
-
-   
-
-   
-
+function setup() {   // standard p5 setup function
+  createCanvas(windowWidth , windowHeight);
 }
 
 
 
 function draw() {
-    background(0)
+  background(0)
 
-    
-   
+  fill(0, 100, 255);
+  noStroke();
+  ellipse(xBall, yBall , diameter, diameter)   // makes ball
 
-   
-  
-
-
-    fill(0, 100, 255);
-    noStroke();
-    ellipse(xBall, yBall , diameter, diameter)
-
-    xBall += xBallChange;
-    yBall += yBallChange;
+  xBall += xBallChange;
+  yBall += yBallChange;
 
 
-    if (xBall < diameter/2 || 
-      xBall > windowWidth - 0.5*diameter) {
-  xBallChange *= -1;
-}
-if (yBall < diameter/2 || 
-     yBall > windowHeight - diameter) {
-  yBallChange *= -1;
-}
+  if (xBall < diameter/2 ||   //bounces ball of sides
+    xBall > windowWidth - 0.5*diameter) {
+    xBallChange *= -1;
+  }
 
-if ((xBall > xPaddle &&
+
+  if (yBall < diameter/2 ||   // bounces ball of top and bottom
+    yBall > windowHeight - diameter) {
+    yBallChange *= -1;
+  }
+
+  if ((xBall > xPaddle &&   // detects paddle hit
     xBall < xPaddle + paddleWidth) &&
     (yBall + (diameter/2) >= yPaddle)) {
-xBallChange *= 1.07;
-yBallChange *= -1.07;
+    xBallChange *= 1.07;   // speeds up ball on every hit
+    yBallChange *= -1.07;   
+    score++;   // increments score
+  }
 
-score++;
 
-}
-
-if(yBall > yPaddle ){
+  if(yBall > yPaddle ){   // detects if ball has gone past paddle and resets score and ball at top
     score = 0;
     xBall = Math.floor(Math.random() + 300) + 50;
     yBall = 50;
     xBallChange = 4;
     yBallChange = 4;
-}
+  }
 
-if (!started) {
+
+
+  if (!started) {  // starts ball
     xPaddle = windowWidth / 2;
     yPaddle = windowHeight -150;
     started = true;
   }
 
-  if (score > highScore) {
+  if (score > highScore) {  // increments highscore and keeps highscore while page is loaded.
     highScore = score;
   }
 
-  
 
-  fill(0, 255, 0);
-noStroke();
-rect(xPaddle, yPaddle, paddleWidth, paddleHeight);
+  fill(0, 255, 0);    // builds paddle
+  noStroke();
+  rect(xPaddle, yPaddle, paddleWidth, paddleHeight);
 
-fill(0, 255, 255);
-textSize(24);
-text("High Score: " + highScore, 30, 30);
+  fill(0, 255, 255);  // sets placement of highscore text and location on canvas
+  textSize(24);
+  text("High Score: " + highScore, 30, 30);
 
-fill(0, 255, 255);
-textSize(24);
-text("Score: " + score, 30, 60);
-
-
-
+  fill(0, 255, 255);  // sets placement of score text and location on canvas
+  textSize(24);
+  text("Score: " + score, 30, 60);
 }
 
-function keyPressed() {
-    if (keyCode === LEFT_ARROW) {
-      xPaddle -= 40;
-    } 
-    else if (keyCode === RIGHT_ARROW) {
-      xPaddle += 40;
-    }
-  }
 
 
-  function mouseMoved(){
-    xPaddle = mouseX;
+
+function keyPressed() {  // gives left and right arrows paddle movement.
+  if (keyCode === LEFT_ARROW) {
+    xPaddle -= 40;
+  } 
+  else if (keyCode === RIGHT_ARROW) {
+    xPaddle += 40;
   }
+}
+
+
+
+
+
+function mouseMoved(){  // gives paddle movement to mouse when mouse is moved.
+  xPaddle = mouseX;
+}
 
 
   
   
-  window.addEventListener("resize", windowResized);
+window.addEventListener("resize", windowResized);   // fits canvas to full window size
