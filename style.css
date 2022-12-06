@@ -50,14 +50,19 @@ h2{
     font-size: 3.5rem;
     color: white;
     text-align: center;
-    padding-bottom: 10%;
+    padding-bottom: 2%;
 }
 
-p{
+#list{
     font-size: 3rem;
     color: white;
     text-align: center;
     padding:5%;
+}
+
+.listItem{
+	font-size: 2rem;
+	padding-bottom: 1%;
 }
 
 
