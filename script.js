@@ -16,11 +16,12 @@ var paddleHeight = 25;
 
 var started = false;
 var score = 0;
+var highScore = 0;
 
 
 
 function setup() {
-   createCanvas(windowWidth -15, windowHeight );
+   createCanvas(windowWidth , windowHeight  );
 
    
 
@@ -81,6 +82,10 @@ if (!started) {
     started = true;
   }
 
+  if (score > highScore) {
+    highScore = score;
+  }
+
   
 
   fill(0, 255, 0);
@@ -89,7 +94,14 @@ rect(xPaddle, yPaddle, paddleWidth, paddleHeight);
 
 fill(0, 255, 255);
 textSize(24);
-text("Score: " + score, 30, 30);
+text("High Score: " + highScore, 30, 30);
+
+fill(0, 255, 255);
+textSize(24);
+text("Score: " + score, 30, 60);
+
+
+
 }
 
 function keyPressed() {
